@@ -1,12 +1,15 @@
 <?php
 session_start();
 require_once 'fonc_bdd.php';
-$bdd=OuvrirConnexion($session, $usr, $mdp);
-$titre="Librairie"; //Titre ‡ changer sur chaque page
+$bdd = OuvrirConnexion($session, $usr, $mdp);
+$titre = "Librairie"; //Titre ‡ changer sur chaque page
 require_once 'menu.php';
 ?>
+<html>
+<link rel="icon" type="image/png" href="favicon.png"/>
+</html>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    
+    <br/><br/><br/>
     <div class="carousel-inner" role="listbox">
 
         <?php
@@ -14,21 +17,21 @@ require_once 'menu.php';
         $count = $num->rowCount();
 
 
-        for ($i = 1; $i <= $count ; $i++) {
+        for ($i = 1; $i <= $count; $i++) {
 
-            $num1 = $bdd->query('SELECT ISBN_ISSN from vitrine where NUM='.$i.';');
-            $num1=$num1->fetch();
+            $num1 = $bdd->query('SELECT ISBN_ISSN from vitrine where NUM=' . $i . ';');
+            $num1 = $num1->fetch();
 
-            if($i==1){
-                echo'<div class="item active">
-        <img src="couverture/'.$num1['ISBN_ISSN'].'.jpg" alt="En construction !" style ="width:500px; height:600px; align:right"/>
+            if ($i == 1) {
+                echo '<div class="item active">
+        <img src="couverture/' . $num1['ISBN_ISSN'] . '.jpg" alt="En construction !" style ="width:500px; height:600px; align:right"/>
         <div class="carousel-caption">
         
         </div>      
       </div>';
             } else {
-                echo'<div class="item">
-        <img src="couverture/'.$num1['ISBN_ISSN'].'.jpg" alt="En construction !" style ="width:500px; height:600px; align:right"/>
+                echo '<div class="item">
+        <img src="couverture/' . $num1['ISBN_ISSN'] . '.jpg" alt="En construction !" style ="width:500px; height:600px; align:right"/>
         <div class="carousel-caption">
         
         </div>      
@@ -61,17 +64,17 @@ include('band.html');
 
     function initialize() {
         var mapProp = {
-            center:myCenter,
-            zoom:12,
-            scrollwheel:false,
-            draggable:false,
-            mapTypeId:google.maps.MapTypeId.ROADMAP
+            center: myCenter,
+            zoom: 12,
+            scrollwheel: false,
+            draggable: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
-        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
         var marker = new google.maps.Marker({
-            position:myCenter,
+            position: myCenter,
         });
 
         marker.setMap(map);
@@ -83,23 +86,27 @@ include('band.html');
 
 <footer class="text-center">
     <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
-        <span class="glyphicon glyphicon-chevron-up"></span>
-    </a><br><br>
+        <div class="glyphicon glyphicon-chevron-up"></div>
+    </a><br/>
+	<span>
+
     <a class="up-arrow" href="a_propos.php" data-toggle="tooltip" title="A propos">
-        <a class="up-arrow" href="a_propos.php" data-toggle="tooltip" title="A propos">
-            <a class="up-arrow" href="a_propos.php" data-toggle="tooltip" title="A propos">
-                <div>
-                    <p align="center"><?php echo "<u>À Propos</u>";?></p>
-                </div>
-            </a>
-            <p align="center">Nous Contacter</p>
-            <p align="center"><span class="glyphicon glyphicon-map-marker"></span> <?php echo "Adresse : Dozulé, FR";?></p>
-            <p align="center"><span class="glyphicon glyphicon-phone"></span> <?php echo "Téléphone :";?> </p>
-            <p align="center"><span class="glyphicon glyphicon-envelope"></span> Email : </p>
+        <span align="center">
+
+           <u> À Propos</u> |
+             
+        </span>
+    </a>
+
+    <span align="center">Nous Contacter | </span>
+    <span align="center"><div class="glyphicon glyphicon-map-marker"></div> Adresse : Dozulé, FR |</span>
+    <span align="center"><div class="glyphicon glyphicon-phone"></div> Téléphone : | </span>
+    <span align="center"><div class="glyphicon glyphicon-envelope"></div> Email :</span>
+	</span>
 </footer>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
     })
 </script>
